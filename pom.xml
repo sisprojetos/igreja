@@ -15,6 +15,12 @@
 		<url>Sem site ainda... rsrs</url>
 	</organization>
 	
+	<!-- Controle de Issues -->
+	<issueManagement>
+		<url>https://github.com/sisprojetos/igreja/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+	
 	<!--  Licença -->
 	<licenses>
 		<license>
