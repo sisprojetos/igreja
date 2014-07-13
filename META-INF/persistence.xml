@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="Sis_Igreja">
+	<persistence-unit name="Sis_Igreja" transaction-type="RESOURCE_LOCAL">
+		<description>Hibernate</description>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.com.sis.igreja.model.entity.Acesso</class>
+		<class>br.com.sis.igreja.model.entity.Cidade</class>
+		<class>br.com.sis.igreja.model.entity.Endereco</class>
+		<class>br.com.sis.igreja.model.entity.Estado</class>
+		<class>br.com.sis.igreja.model.entity.Igreja</class>
+		<class>br.com.sis.igreja.model.entity.Membro</class>
+		<class>br.com.sis.igreja.model.entity.Pai</class>
+		<class>br.com.sis.igreja.model.entity.Telefone</class>
+		<class>br.com.sis.igreja.model.entity.Tipoigreja</class>
+		<class>br.com.sis.igreja.model.entity.Tipomembro</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_igreja"/>
+			<property name="javax.persistence.jdbc.user" value="sis_igreja"/>
+			<property name="javax.persistence.jdbc.password" value="sisigreja"/>
+		</properties>
 	</persistence-unit>
 </persistence>

@@ -1,4 +1,4 @@
-package br.com.sis.igreja;
+package br.com.sis.igreja.controller;
 
 import java.io.Serializable;
 
