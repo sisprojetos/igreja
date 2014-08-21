@@ -22,6 +22,14 @@ public class TipoMembroBean implements Serializable{
 	private Tipomembro tipoMembro = new Tipomembro();
 	private DataModel<Tipomembro> tipoMembros;
 	private String codigoSituacao;
+	
+	public String getCodigoSituacao() {
+		return codigoSituacao;
+	}
+
+	public void setCodigoSituacao(String codigoSituacao) {
+		this.codigoSituacao = codigoSituacao;
+	}
 
 	public Tipomembro getTipoMembro() {
 		return tipoMembro;

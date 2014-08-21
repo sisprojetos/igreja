@@ -5,9 +5,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>T2Ti JSF 2</title>
+	<title>Cadastro de Tipo Membro</title>
 </h:head>
 <h:body>
+	<h2 style="color:red;">Cadastro de Tipo de Membro</h2>
+	<p:messages closable="true" autoUpdate="true" globalOnly="true" />
 	<h:form>
 		<h:panelGrid columns="2">
 			<p:outputLabel value="Nome: "/>
@@ -15,7 +17,7 @@
 		 
 			<p:outputLabel value="Descrição: "/>
 			<p:inputText value="#{tipoMembroBean.tipoMembro.descricao}" />
-		 
+		
 			<p:commandButton value="Incluir" action="#{tipoMembroBean.incluirMembro}" />
 		</h:panelGrid>
 	</h:form>

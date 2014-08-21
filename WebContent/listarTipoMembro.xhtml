@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastro de perfis para membros</title>
+</h:head>
+<h:body>
+	<h2 style="color: red;text-align:center">Lista de perfis</h2>
+	<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="5" paginator="true">
+		<f:facet name="header">Cadastro de Tipo Membros</f:facet>
+		<p:column>
+			<f:facet name="header">Nome</f:facet>
+			<h:outputText value="#{m.nome}" />
+		</p:column>
+		<p:column>
+			<f:facet name="header">Descricao</f:facet>
+			<h:outputText value="#{m.descricao}" />
+		</p:column>
+		<p:column>
+			<h:form>
+				<p:commandLink value="Alterar"
+					actionListener="#{tipoMembroBean.alterarTipoMembro}"
+					update=":formTipoMembro:panelMembro"
+					oncomplete="dialogTipoMembro.show()" />
+			</h:form>
+		</p:column>
+		<p:column>
+			<h:form>
+				<p:commandLink value="Excluir"
+					action="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro">
+					<p:confirm header="Confirmação" message="Confirma Exclusão?"
+						icon="ui-icon-alert" />
+				</p:commandLink>
+			</h:form>
+		</p:column>
+	</p:dataTable>
+	<h:form>
+		<p:commandButton value="Incluir Tipo Membro"
+			actionListener="#{tipoMembroBean.incluirTipoMembro}"
+			update=":formTipoMembro:panelMembro"
+			oncomplete="dialogTipoMembro.show()" />
+	</h:form>
+	
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+		<p:commandButton value="Sim" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		<p:commandButton value="Não" type="button"
+			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	</p:confirmDialog>
+	
+	<p:dialog header="Inclusão/Alteração de Tipo Membro"
+		widgetVar="dialogTipoMembro" modal="true" showEffect="blind"
+		hideEffect="explode" width="800">
+		<h:form id="formTipoMembro">
+			<p:panelGrid id="panelMembro" columns="2">
+				<p:outputLabel value="Nome: " />
+				<p:inputText value="#{tipoMembroBean.tipoMembro.nome}" />
+
+				<p:outputLabel value="Descrição: " />
+				<p:inputText value="#{tipoMembroBean.tipoMembro.descricao}" />
+
+				<p:commandButton value="Incluir"
+					actionListener="#{tipoMembroBean.incluirMembro}"
+					rendered="#{tipoMembroBean.tipoMembro.idTipoMembros != null}"
+					update=":dataTableTipoMembro,panelMembro"
+					oncomplete="if (!args.validationFailed) {dialogTipoMembro.hide();}" />
+
+				<p:commandButton value="Alterar"
+					actionListener="#{tipoMembroBean.alterarTipoMembroProcessa}"
+					rendered="#{tipoMembroBean.tipoMembro.idTipoMembros != null}"
+					update=":dataTableTipoMembro,panelMembro"
+					oncomplete="if (!args.validationFailed) {dialogTipoMembro.hide();}" />
+
+				<p:commandButton value="Cancelar" oncomplete="dialogTipoMembro.hide()" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>
