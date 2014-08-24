@@ -1,7 +1,9 @@
 package br.com.sis.igreja.model.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 

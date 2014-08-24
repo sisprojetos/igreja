@@ -12,6 +12,7 @@ public class PhaseListenerUtil implements PhaseListener{
 
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	public void beforePhase(PhaseEvent fase) {
 		System.out.println("Antes da fase: " + fase.getPhaseId());
 		if (fase.getPhaseId().equals(PhaseId.RESTORE_VIEW)) {
@@ -30,6 +31,8 @@ public class PhaseListenerUtil implements PhaseListener{
 			}
 		}
 	}
+	
+	@Override
 	public void afterPhase(PhaseEvent fase) {
 		System.out.println("Depois da fase: " + fase.getPhaseId());
 		if (fase.getPhaseId().equals(PhaseId.RENDER_RESPONSE)) {
@@ -48,6 +51,7 @@ public class PhaseListenerUtil implements PhaseListener{
 		}
 	}
 
+	@Override
 	public PhaseId getPhaseId() {
 		return PhaseId.ANY_PHASE;
 	}

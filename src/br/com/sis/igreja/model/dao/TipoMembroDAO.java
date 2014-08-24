@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import br.com.sis.igreja.model.entity.Tipomembro;
 
 public class TipoMembroDAO implements InterfaceDAO<Tipomembro> {
+	
 	private EntityManager manager;
 	
 	public TipoMembroDAO(EntityManager manager) {
@@ -20,7 +21,7 @@ public class TipoMembroDAO implements InterfaceDAO<Tipomembro> {
 
 	@Override
 	public void atualizar(Tipomembro bean) throws Exception {
-		manager.merge(bean);		
+		manager.merge(bean);
 	}
 
 	@Override

@@ -8,75 +8,55 @@
 	<title>Cadastro de perfis para membros</title>
 </h:head>
 <h:body>
-	<h2 style="color: red;text-align:center">Lista de perfis</h2>
-	<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="5" paginator="true">
+
+	<p:messages closable="true" autoUpdate="true" globalOnly="true" />
+
+	<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="5" paginator="true" sortMode="multiple">
 		<f:facet name="header">Cadastro de Tipo Membros</f:facet>
-		<p:column>
+		<p:column headerText="Nome" sortBy="#{m.nome}">
 			<f:facet name="header">Nome</f:facet>
 			<h:outputText value="#{m.nome}" />
 		</p:column>
-		<p:column>
+		<p:column headerText="Descrição" sortBy="#{m.descricao}">
 			<f:facet name="header">Descricao</f:facet>
 			<h:outputText value="#{m.descricao}" />
 		</p:column>
 		<p:column>
 			<h:form>
-				<p:commandLink value="Alterar"
-					actionListener="#{tipoMembroBean.alterarTipoMembro}"
-					update=":formTipoMembro:panelMembro"
-					oncomplete="dialogTipoMembro.show()" />
+				<p:commandLink value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
 			</h:form>
 		</p:column>
 		<p:column>
 			<h:form>
-				<p:commandLink value="Excluir"
-					action="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro">
-					<p:confirm header="Confirmação" message="Confirma Exclusão?"
-						icon="ui-icon-alert" />
-				</p:commandLink>
+				<p:commandLink value="Excluir" action="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
 			</h:form>
 		</p:column>
 	</p:dataTable>
+	
 	<h:form>
-		<p:commandButton value="Incluir Tipo Membro"
-			actionListener="#{tipoMembroBean.incluirTipoMembro}"
-			update=":formTipoMembro:panelMembro"
-			oncomplete="dialogTipoMembro.show()" />
+		<p:commandButton value="Incluir Tipo Membro" actionListener="#{tipoMembroBean.incluirTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
 	</h:form>
 	
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-		<p:commandButton value="Sim" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-		<p:commandButton value="Não" type="button"
-			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 	</p:confirmDialog>
 	
-	<p:dialog header="Inclusão/Alteração de Tipo Membro"
-		widgetVar="dialogTipoMembro" modal="true" showEffect="blind"
-		hideEffect="explode" width="800">
+	<p:dialog header="Inclusão/Alteração de Tipo Membro" widgetVar="dialogTipoMembro" modal="true" resizable="false">
 		<h:form id="formTipoMembro">
-			<p:panelGrid id="panelMembro" columns="2">
+			<p:panelGrid id="panelMembro" columns="3">
 				<p:outputLabel value="Nome: " />
-				<p:inputText value="#{tipoMembroBean.tipoMembro.nome}" />
-
+				<p:inputText id="tipoMembroNome" maxlength="20" value="#{tipoMembroBean.tipoMembro.nome}" required="true" requiredMessage="É necessário informar o Tipo do cliente" />
+				<p:message for="tipoMembroNome" />
 				<p:outputLabel value="Descrição: " />
-				<p:inputText value="#{tipoMembroBean.tipoMembro.descricao}" />
-
-				<p:commandButton value="Incluir"
-					actionListener="#{tipoMembroBean.incluirMembro}"
-					rendered="#{tipoMembroBean.tipoMembro.idTipoMembros != null}"
-					update=":dataTableTipoMembro,panelMembro"
-					oncomplete="if (!args.validationFailed) {dialogTipoMembro.hide();}" />
-
-				<p:commandButton value="Alterar"
-					actionListener="#{tipoMembroBean.alterarTipoMembroProcessa}"
-					rendered="#{tipoMembroBean.tipoMembro.idTipoMembros != null}"
-					update=":dataTableTipoMembro,panelMembro"
-					oncomplete="if (!args.validationFailed) {dialogTipoMembro.hide();}" />
-
-				<p:commandButton value="Cancelar" oncomplete="dialogTipoMembro.hide()" />
+				<p:inputText id="tipoMembroDescricao" maxlength="100" value="#{tipoMembroBean.tipoMembro.descricao}" />
+				<h:outputLabel value="" />
+				<p:commandButton value="Incluir" actionListener="#{tipoMembroBean.incluirMembro}" rendered="#{tipoMembroBean.tipoMembro.nome == null}"	update=":dataTableTipoMembro,panelMembro" oncomplete="if (!args.validationFailed) {PF('dialogTipoMembro').hide();}" />
+				<p:commandButton value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembroProcessa}" rendered="#{tipoMembroBean.tipoMembro.nome != null}" update=":dataTableTipoMembro,panelMembro" oncomplete="if (!args.validationFailed) {PF('dialogTipoMembro').hide();}" />
+				<p:commandButton value="Cancelar" oncomplete="PF('dialogTipoMembro').hide();" />
 			</p:panelGrid>
 		</h:form>
 	</p:dialog>
+	
 </h:body>
 </html>
