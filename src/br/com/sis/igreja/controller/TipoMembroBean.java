@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
@@ -16,6 +17,7 @@ import br.com.sis.igreja.model.entity.Tipomembro;
 import br.com.sis.igreja.util.JPAUtil;
 
 @ManagedBean
+@SessionScoped
 public class TipoMembroBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -87,6 +89,4 @@ public class TipoMembroBean implements Serializable{
 			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_FATAL, "Ocorreu um erro ao excluir o cliente", e.getMessage());
 		}
 	}
-	
-	
 }

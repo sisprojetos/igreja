@@ -23,12 +23,12 @@
 		</p:column>
 		<p:column>
 			<h:form>
-				<p:commandLink value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
+				<p:commandLink value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show(); "/>
 			</h:form>
 		</p:column>
 		<p:column>
 			<h:form>
-				<p:commandLink value="Excluir" action="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
+				<p:commandLink value="Excluir" actionListener="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
 			</h:form>
 		</p:column>
 	</p:dataTable>
