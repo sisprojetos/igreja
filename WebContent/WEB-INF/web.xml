@@ -22,6 +22,15 @@
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>resources.application</param-value>
 	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>#{themeSwitcherBean.theme}</param-value>
+	</context-param>
+	<context-param> 
+		<param-name>com.sun.faces.writeStateAtFormEnd</param-name> 
+		<param-value>false</param-value> 
+	</context-param>
+	
 	<listener>
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
