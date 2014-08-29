@@ -36,7 +36,8 @@ public class TipoMembroDAO implements InterfaceDAO<Tipomembro> {
 
 	@Override
 	public List<Tipomembro> getBeans() throws Exception {
-		Query query = manager.createQuery("SELECT s FROM Tipomembro s");
+		//Query query = manager.createQuery("SELECT s FROM Tipomembro s");
+		Query query = manager.createNamedQuery("Tipomembro.findAll");
 		return query.getResultList();
 	}
 }

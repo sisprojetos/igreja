@@ -3,6 +3,7 @@ package br.com.sis.igreja.model.entity;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -76,6 +77,44 @@ public class Tipomembro implements Serializable {
 		membro.setTipomembro(null);
 
 		return membro;
+	}
+	
+	@PrePersist
+	public void prePersist(){
+		System.err.println("Persistindo um novo objeto com persist () ou merge () ... ");
+	}
+
+	@PostPersist
+	public void postPersist(){
+		System.err.println("O comando insert foi executado no banco de dados ... ");
+		System.err.println("Um rollback ainda pode desfazer o comando insert ... ");
+	}
+
+	@PreRemove
+	public void preRemove(){
+		System.err.println("Removendo um objeto gerenciado com remove () ... ");
+	}
+
+	@PostRemove
+	public void postRemove(){
+		System.err.println("O comando delete foi executado no banco de dados ... ");
+		System.err.println("Um rollback ainda pode desfazer o comando delete ... ");
+	}
+
+	@PreUpdate
+	public void preUpdate(){
+		System.err.println("O comando update executará no banco de dados ... ");
+	}
+
+	@PostUpdate
+	public void postUpdate(){
+		System.err.println("O comando update foi executado no banco de dados ... ");
+		System.err.println("Um rollback ainda pode desfazer o comando update ... ");
+	}
+
+	@PostLoad
+	public void postLoad (){
+		System.err.println("Um objeto foi carregado com os dados do banco de dados .");
 	}
 
 }

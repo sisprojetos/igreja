@@ -14,7 +14,7 @@
 
 			<p:messages closable="true" autoUpdate="true" globalOnly="true" />
 		
-			<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="5" paginator="true" sortMode="multiple">
+			<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="5" paginator="true" sortMode="multiple" lazy="true">
 				<f:facet name="header">Cadastro de Tipo Membros</f:facet>
 				<p:column headerText="Nome" sortBy="#{m.nome}">
 					<f:facet name="header">Nome</f:facet>
