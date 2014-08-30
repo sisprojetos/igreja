@@ -2,58 +2,70 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <body>
 	<ui:composition>
-		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
-		    <p:menuitem value="Index" url="index.xhtml" icon="ui-icon-close" />
-		    
-		    <p:submenu label="Menu Principal" icon="ui-icon-check">
-		        <p:column>
-		            <p:submenu label="TV.1">
-		                <p:menuitem value="TV.1.1" url="TipoMembro.xhtml" />
-		                <p:menuitem value="TV.1.2" url="#" />
-		            </p:submenu>
-		        </p:column>
-		    </p:submenu>
-		 		
-		    <p:submenu label="Membro" icon="ui-icon-document">
-		    	<p:column>
-		            <p:submenu label="Membro">
-		                <p:menuitem value="Tipo Membro" url="TipoMembro.xhtml" />
-		            </p:submenu>
-		        </p:column>
-		    </p:submenu>
-		 
-		    <p:submenu label="Igreja" icon="ui-icon-pencil">
-		 
-		        <p:column>
-		            <p:submenu label="Entertainment.4" icon="ui-icon-help">
-		                <p:menuitem value="Entertainment.4.1" url="#" />
-		                <p:menuitem value="Entertainment.4.2" url="#" />
-		            </p:submenu>
-		        </p:column>
-		        
-		    </p:submenu>
-		 
-		    <p:submenu label="Endereço" icon="ui-icon-contact">
-		        <p:column>
-		            <p:submenu label="Tech.1">
-		                <p:menuitem value="Tech.1.1" url="#" />
-		                <p:menuitem value="Tech.1.2" url="#" />
-		            </p:submenu>
-		        </p:column>
-		        
-		    </p:submenu>
-		 
-		    <p:menuitem value="Telefone" url="http://www.primefaces.org" icon="ui-icon-close" />
-		</p:megaMenu>
-		
+		<p:megaMenu orientation="#{megaMenuView.orientation}"
+			style="margin-top:20px">
+			<p:menuitem value="Index" url="index.xhtml" icon="ui-icon-close" />
 
-		
+			<p:submenu label="Menu Principal" icon="ui-icon-check">
+				<p:column>
+					<p:submenu label="TV.1">
+						<p:menuitem value="TV.1.1" url="TipoMembro.xhtml" />
+						<p:menuitem value="TV.1.2" url="#" />
+					</p:submenu>
+				</p:column>
+			</p:submenu>
+
+			<p:submenu label="Membro" icon="ui-icon-document">
+				<p:column>
+					<p:submenu label="Membro">
+						<p:menuitem value="Tipo Membro" url="TipoMembro.xhtml" />
+					</p:submenu>
+				</p:column>
+			</p:submenu>
+
+			<p:submenu label="Igreja" icon="ui-icon-pencil">
+
+				<p:column>
+					<p:submenu label="Entertainment.4" icon="ui-icon-help">
+						<p:menuitem value="Entertainment.4.1" url="#" />
+						<p:menuitem value="Entertainment.4.2" url="#" />
+					</p:submenu>
+				</p:column>
+
+			</p:submenu>
+
+			<p:submenu label="Endereço" icon="ui-icon-contact">
+				<p:column>
+					<p:submenu label="Tech.1">
+						<p:menuitem value="Tech.1.1" url="#" />
+						<p:menuitem value="Tech.1.2" url="#" />
+					</p:submenu>
+				</p:column>
+
+			</p:submenu>
+
+			<p:menuitem value="Telefone" url="http://www.primefaces.org"
+				icon="ui-icon-close" />
+		</p:megaMenu>
+
+		<h:outputText value="#{language.internacionalizacaoTexto}" />
+			<h:form>
+				<h:selectOneMenu value="#{usuarioMB.linguaEscolhida}">
+					<f:selectItem itemValue="pt"
+						itemLabel="#{language.internacionalizacaoPT}" />
+					<f:selectItem itemValue="en"
+						itemLabel="#{language.internacionalizacaoEN}" />
+				</h:selectOneMenu>
+				<h:commandButton action="#{usuarioMB.alterarIdioma}"
+					value="#{language.internacionalizacaoTrocar}" />
+			</h:form>
+
 	</ui:composition>
 </body>
 </html>

@@ -7,16 +7,16 @@ import javax.persistence.Query;
 import br.com.sis.igreja.model.entity.Tipomembro;
 
 public class TipoMembroDAO implements InterfaceDAO<Tipomembro> {
-	
+
 	private EntityManager manager;
-	
+
 	public TipoMembroDAO(EntityManager manager) {
 		this.manager = manager;
 	}
-	
+
 	@Override
 	public void salvar(Tipomembro bean) throws Exception {
-		manager.persist(bean);		
+		manager.persist(bean);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class TipoMembroDAO implements InterfaceDAO<Tipomembro> {
 
 	@Override
 	public void excluir(Tipomembro bean) throws Exception {
-		manager.remove(bean);		
+		manager.remove(bean);
 	}
 
 	@Override

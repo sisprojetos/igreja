@@ -7,27 +7,26 @@ import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the tipomembros database table.
  * 
  */
 @Entity
-@Table(name="tipomembros")
-@NamedQuery(name="Tipomembro.findAll", query="SELECT t FROM Tipomembro t")
+@Table(name = "tipomembros")
+@NamedQuery(name = "Tipomembro.findAll", query = "SELECT t FROM Tipomembro t")
 public class Tipomembro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idTipoMembros;
 
 	private String descricao;
 
 	private String nome;
 
-	//bi-directional many-to-one association to Membro
-	@OneToMany(mappedBy="tipomembro")
+	// bi-directional many-to-one association to Membro
+	@OneToMany(mappedBy = "tipomembro")
 	private List<Membro> membros;
 
 	public Tipomembro() {

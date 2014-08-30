@@ -16,12 +16,10 @@
 		
 			<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="5" paginator="true" sortMode="multiple" lazy="true">
 				<f:facet name="header">Cadastro de Tipo Membros</f:facet>
-				<p:column headerText="Nome" sortBy="#{m.nome}">
-					<f:facet name="header">Nome</f:facet>
+				<p:column headerText="#{language.nome}" sortBy="#{m.nome}">
 					<h:outputText value="#{m.nome}" />
 				</p:column>
-				<p:column headerText="Descrição" sortBy="#{m.descricao}">
-					<f:facet name="header">Descricao</f:facet>
+				<p:column headerText="#{language.descricao}" sortBy="#{m.descricao}">
 					<h:outputText value="#{m.descricao}" />
 				</p:column>
 				<p:column>
@@ -37,7 +35,7 @@
 			</p:dataTable>
 			
 			<h:form>
-				<p:commandButton value="Incluir Tipo Membro" actionListener="#{tipoMembroBean.incluirTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
+				<p:commandButton value="#{language.incluirTipoMembro}" actionListener="#{tipoMembroBean.incluirTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
 			</h:form>
 			
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">

@@ -18,8 +18,8 @@ import br.com.sis.igreja.util.JPAUtil;
 
 @ManagedBean
 @SessionScoped
-public class TipoMembroBean implements Serializable{
-	
+public class TipoMembroBean implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	private Tipomembro tipoMembro = new Tipomembro();
 	private DataModel<Tipomembro> tipoMembros;
@@ -33,31 +33,33 @@ public class TipoMembroBean implements Serializable{
 	}
 
 	public DataModel<Tipomembro> getTipomembros() {
-		try{
+		try {
 			TipoMembroDAO dao = new TipoMembroDAO(JPAUtil.getManager());
-//			if (tipoMembros == null) {
-				tipoMembros = new ListDataModel<Tipomembro>(dao.getBeans());
-//			}
+			// if (tipoMembros == null) {
+			tipoMembros = new ListDataModel<Tipomembro>(dao.getBeans());
+			// }
 			return tipoMembros;
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return new ListDataModel<Tipomembro>();
 	}
-	
+
 	public void incluirTipoMembro() {
 		tipoMembro = new Tipomembro();
 	}
 
 	public void incluirMembro() {
-		try{
+		try {
 			TipoMembroDAO dao = new TipoMembroDAO(JPAUtil.getManager());
 			dao.salvar(tipoMembro);
 
-			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_INFO, "TipoMembro cadastrado com sucesso", "");
-		} catch(Exception e){
+			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_INFO,
+					"TipoMembro cadastrado com sucesso", "");
+		} catch (Exception e) {
 			e.printStackTrace();
-			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_FATAL, "Ocorreu um erro ao cadastrar o TipoMembro", e.getMessage());
+			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_FATAL,
+					"Ocorreu um erro ao cadastrar o TipoMembro", e.getMessage());
 		}
 	}
 
@@ -66,27 +68,32 @@ public class TipoMembroBean implements Serializable{
 	}
 
 	public void alterarTipoMembroProcessa() {
-		try{
+		try {
 			TipoMembroDAO dao = new TipoMembroDAO(JPAUtil.getManager());
 			dao.atualizar(tipoMembro);
-			
-			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_INFO, "Dados do TipoMembro alterados com sucesso", "");
-		} catch(Exception e){
+
+			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_INFO,
+					"Dados do TipoMembro alterados com sucesso", "");
+		} catch (Exception e) {
 			e.printStackTrace();
-			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_FATAL, "Ocorreu um erro ao alterar os dados do TipoMembro", e.getMessage());
+			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_FATAL,
+					"Ocorreu um erro ao alterar os dados do TipoMembro",
+					e.getMessage());
 		}
 	}
 
 	public void excluirTipoMembro() {
-		try{
+		try {
 			tipoMembro = tipoMembros.getRowData();
 			TipoMembroDAO dao = new TipoMembroDAO(JPAUtil.getManager());
 			dao.excluir(tipoMembro);
-			
-			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_INFO, "Dados do Cliente excluído com sucesso", "");
-		} catch(Exception e){
+
+			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_INFO,
+					"Dados do Cliente excluído com sucesso", "");
+		} catch (Exception e) {
 			e.printStackTrace();
-			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_FATAL, "Ocorreu um erro ao excluir o cliente", e.getMessage());
+			JPAUtil.adiconaMensagem(FacesMessage.SEVERITY_FATAL,
+					"Ocorreu um erro ao excluir o cliente", e.getMessage());
 		}
 	}
 }
