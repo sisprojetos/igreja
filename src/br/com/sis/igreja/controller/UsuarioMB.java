@@ -13,6 +13,7 @@ public class UsuarioMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String linguaEscolhida;
+	private Locale locale = new Locale("pt", "BR");
 
 	public String getLinguaEscolhida() {
 		return linguaEscolhida;
@@ -22,12 +23,18 @@ public class UsuarioMB implements Serializable {
 		this.linguaEscolhida = linguaEscolhida;
 	}
 
-	private Locale locale;
-
-	public String alterarIdioma() {
-			locale = new Locale(linguaEscolhida);
-			FacesContext instance = FacesContext.getCurrentInstance();
+	public void alterarIdioma() {
+		FacesContext instance = FacesContext.getCurrentInstance();
+		if (linguaEscolhida.equals("en")) {
+			locale = Locale.US;
 			instance.getViewRoot().setLocale(locale);
-			return null;
+		} else {
+			locale = new Locale(linguaEscolhida);
+			instance.getViewRoot().setLocale(locale);
 		}
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
 }

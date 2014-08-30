@@ -52,20 +52,24 @@
 
 			<p:menuitem value="Telefone" url="http://www.primefaces.org"
 				icon="ui-icon-close" />
+				
+			<p:menuitem value="Lingua" url="http://www.primefaces.org"
+				icon="ui-icon-close"> 
+			<f:view locale="#{usuarioMB.locale}" contentType="text/html; charset=UTF-8" encoding="UTF-8">  
+				<h:form>
+					<h:outputText value="#{language.internacionalizacaoTexto}" />
+					<h:selectOneMenu value="#{usuarioMB.linguaEscolhida}">
+						<f:selectItem itemValue="pt"
+							itemLabel="#{language.internacionalizacaoPT}" />
+						<f:selectItem itemValue="en"
+							itemLabel="#{language.internacionalizacaoEN}" />
+					</h:selectOneMenu>
+					<h:commandButton actionListener="#{usuarioMB.alterarIdioma}"
+						value="#{language.internacionalizacaoTrocar}" />
+				</h:form>
+			</f:view>
+			</p:menuitem>
 		</p:megaMenu>
-
-		<h:outputText value="#{language.internacionalizacaoTexto}" />
-			<h:form>
-				<h:selectOneMenu value="#{usuarioMB.linguaEscolhida}">
-					<f:selectItem itemValue="pt"
-						itemLabel="#{language.internacionalizacaoPT}" />
-					<f:selectItem itemValue="en"
-						itemLabel="#{language.internacionalizacaoEN}" />
-				</h:selectOneMenu>
-				<h:commandButton action="#{usuarioMB.alterarIdioma}"
-					value="#{language.internacionalizacaoTrocar}" />
-			</h:form>
-
 	</ui:composition>
 </body>
 </html>
