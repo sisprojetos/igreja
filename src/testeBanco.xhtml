@@ -1,0 +1,23 @@
+<ui:composition template="/Templates/TemplatePrincipal.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+		<h2 style="color: red;">Cadastro de Tipo de Membro</h2>
+		<p:messages closable="true" autoUpdate="true" globalOnly="true" />
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Nome: " />
+				<p:inputText value="#{tipoMembroBean.tipoMembro.nome}" />
+
+				<p:outputLabel value="Descrição: " />
+				<p:inputText value="#{tipoMembroBean.tipoMembro.descricao}" />
+
+				<p:commandButton value="Incluir"
+					action="#{tipoMembroBean.incluirMembro}" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
