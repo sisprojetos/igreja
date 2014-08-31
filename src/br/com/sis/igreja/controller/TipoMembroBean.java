@@ -2,9 +2,10 @@ package br.com.sis.igreja.controller;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -13,7 +14,7 @@ import br.com.sis.igreja.model.entity.Tipomembro;
 import br.com.sis.igreja.util.JPAUtil;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class TipoMembroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,18 +32,21 @@ public class TipoMembroBean implements Serializable {
 	public void setTipoMembro(Tipomembro tipoMembro) {
 		this.tipoMembro = tipoMembro;
 	}
-
-	public DataModel<Tipomembro> getTipomembros() {
+	
+	@PostConstruct
+	public void init() {
 		try {
+			System.err.println("executando o init");
 			TipoMembroDAO dao = new TipoMembroDAO(JPAUtil.getManager());
-			// if (tipoMembros == null) {
 			tipoMembros = new ListDataModel<Tipomembro>(dao.getBeans());
-			// }
-			return tipoMembros;
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new ListDataModel<Tipomembro>();
+	}
+	
+	public DataModel<Tipomembro> findAll() {
+			return tipoMembros;
 	}
 
 	public void incluirTipoMembro() {

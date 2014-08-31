@@ -5,13 +5,15 @@ import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
+@SessionScoped
 public class ThemeSwitcherBean {
 
 	 private Map<String, String> themes;  
      
-	    private String theme = "dot-luv";  
+	    private String theme = "hot-sneaks";  
 	      
 	    public Map<String, String> getThemes() {  
 	        return themes;  

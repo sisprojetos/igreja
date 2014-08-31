@@ -9,70 +9,58 @@
 	xmlns:p="http://primefaces.org/ui">
 <body>
 	<ui:composition>
+	
 		<p:megaMenu orientation="#{megaMenuView.orientation}"
 			style="margin-top:20px">
-			<p:menuitem value="Index" url="index.xhtml" icon="ui-icon-close" />
+			<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-close" />
 
-			<p:submenu label="Menu Principal" icon="ui-icon-check">
+			<p:submenu label="Membro" icon="ui-icon-check">
 				<p:column>
-					<p:submenu label="TV.1">
-						<p:menuitem value="TV.1.1" url="TipoMembro.xhtml" />
-						<p:menuitem value="TV.1.2" url="#" />
+					<p:submenu label="Administração dos Membros">
+						<p:menuitem value="CRUD Tipo" url="TipoMembro.xhtml" />
+						<p:menuitem value="CRUD Membro" url="#" />
 					</p:submenu>
 				</p:column>
 			</p:submenu>
 
-			<p:submenu label="Membro" icon="ui-icon-document">
+			<p:submenu label="Filial" icon="ui-icon-check">
 				<p:column>
-					<p:submenu label="Membro">
-						<p:menuitem value="Tipo Membro" url="TipoMembro.xhtml" />
+					<p:submenu label="Administração das Filiais">
+						<p:menuitem value="CRUD Tipo" url="#" />
+						<p:menuitem value="CRUD Filial" url="#" />
 					</p:submenu>
 				</p:column>
 			</p:submenu>
-
-			<p:submenu label="Igreja" icon="ui-icon-pencil">
-
+			
+			<p:submenu label="Acesso" icon="ui-icon-check">
 				<p:column>
-					<p:submenu label="Entertainment.4" icon="ui-icon-help">
-						<p:menuitem value="Entertainment.4.1" url="#" />
-						<p:menuitem value="Entertainment.4.2" url="#" />
+					<p:submenu label="Administração dos Acessos">
+						<p:menuitem value="CRUD Acesso" url="#" />
 					</p:submenu>
 				</p:column>
-
 			</p:submenu>
-
-			<p:submenu label="Endereço" icon="ui-icon-contact">
-				<p:column>
-					<p:submenu label="Tech.1">
-						<p:menuitem value="Tech.1.1" url="#" />
-						<p:menuitem value="Tech.1.2" url="#" />
-					</p:submenu>
-				</p:column>
-
-			</p:submenu>
-
-			<p:menuitem value="Telefone" url="http://www.primefaces.org"
-				icon="ui-icon-close" />
-				
-			<p:menuitem value="Lingua" url="http://www.primefaces.org"
-				icon="ui-icon-close"> 
-			<f:view locale="#{usuarioMB.locale}" contentType="text/html; charset=UTF-8" encoding="UTF-8">  
-				<h:form>
-					<h:outputText value="#{language.internacionalizacaoTexto}" />
-					<h:selectOneMenu value="#{usuarioMB.linguaEscolhida}">
-						<f:selectItem itemValue="pt"
-							itemLabel="#{language.internacionalizacaoPT}" />
-						<f:selectItem itemValue="en"
-							itemLabel="#{language.internacionalizacaoEN}" />
-					</h:selectOneMenu>
-					<h:commandButton actionListener="#{usuarioMB.alterarIdioma}"
-						value="#{language.internacionalizacaoTrocar}" />
-				</h:form>
-			</f:view>
-			</p:menuitem>
+			
 		</p:megaMenu>
 		
 		<br></br>
+		
+		<div style="text-align: right;">
+			<p:menuitem value="Idioma" url="http://www.primefaces.org" icon="ui-icon-close"> 
+				<f:view locale="#{usuarioMB.locale}" contentType="text/html; charset=UTF-8" encoding="UTF-8">  
+					<h:form>
+						<h:outputText value="#{language.internacionalizacaoTexto}" />
+						<h:selectOneMenu value="#{usuarioMB.linguaEscolhida}">
+							<f:selectItem itemValue="pt"
+								itemLabel="#{language.internacionalizacaoPT}" />
+							<f:selectItem itemValue="en"
+								itemLabel="#{language.internacionalizacaoEN}" />
+						</h:selectOneMenu>
+						<h:commandButton actionListener="#{usuarioMB.alterarIdioma}"
+							value="#{language.internacionalizacaoTrocar}" />
+					</h:form>
+				</f:view>
+			</p:menuitem>
+		</div>
 		
 		<div style="text-align: center">
 			<p:themeSwitcher style="width:200px; text-align: left" id="defaultSwitcher">

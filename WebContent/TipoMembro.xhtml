@@ -14,20 +14,25 @@
 
 			<p:messages closable="true" autoUpdate="true" globalOnly="true" />
 		
-			<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="10" paginator="true" rowsPerPageTemplate="5,10,15" sortMode="multiple" lazy="true">
-				<f:facet name="header">Tipos de Membro</f:facet>
-				<p:column headerText="#{language.nome}" sortBy="#{m.nome}">
+			<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.findAll()}" var="m" border="1" rows="10" paginator="true" rowsPerPageTemplate="5,10,15" sortMode="multiple" widgetVar="membroTable" emptyMessage="Nenhum tipo encontrado">
+				<f:facet name="header">Tipos de Membro
+					<p:outputPanel>
+		                <h:outputText value="Filtrar Tipos: " />
+		                <p:inputText id="filtroGlobal" onkeyup="PF('membroTable').filter()" style="width:150px" placeholder="Buscar"/>
+		            </p:outputPanel>
+				</f:facet>
+				<p:column headerText="#{language.nome}" sortBy="#{m.nome}" filterBy="#{m.nome}" footerText="#{language.nome}" filterMatchMode="contains">
 					<h:outputText value="#{m.nome}" />
 				</p:column>
-				<p:column headerText="#{language.descricao}" sortBy="#{m.descricao}">
+				<p:column headerText="#{language.descricao}" sortBy="#{m.descricao}" filterBy="#{m.descricao}" footerText="#{language.descricao}" filterMatchMode="contains">
 					<h:outputText value="#{m.descricao}" />
 				</p:column>
-				<p:column>
+				<p:column exportable="false">
 					<h:form>
 						<p:commandLink value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show(); "/>
 					</h:form>
 				</p:column>
-				<p:column>
+				<p:column exportable="false">
 					<h:form>
 						<p:commandLink value="Excluir" actionListener="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
 					</h:form>
@@ -41,6 +46,34 @@
 				<p:commandButton value="#{language.incluirTipoMembro}" actionListener="#{tipoMembroBean.incluirTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
 			</h:form>
 			
+			<br></br>
+			<hr></hr>
+			<br></br>
+			
+			<h3>Exportar relatório</h3>
+			<br></br>
+			<h:form>
+			    <h:commandLink>
+			        <p:graphicImage library="images" name="excel.png" />
+			        <p:dataExporter type="xls" target=":dataTableTipoMembro" fileName="TiposDeMembro" />
+			    </h:commandLink>
+			 
+			    <h:commandLink>
+			        <p:graphicImage library="images" name="pdf.png" />
+			        <p:dataExporter type="pdf" target=":dataTableTipoMembro" fileName="TiposDeMembro" />
+			    </h:commandLink>
+			 
+			    <h:commandLink>
+			        <p:graphicImage library="images" name="csv.png" />
+			        <p:dataExporter type="csv" target=":dataTableTipoMembro" fileName="TiposDeMembro" />
+			    </h:commandLink>
+			 
+			    <h:commandLink>
+			        <p:graphicImage library="images" name="xml.png" />
+			        <p:dataExporter type="xml" target=":dataTableTipoMembro" fileName="TiposDeMembro" />
+			    </h:commandLink>
+		    </h:form>
+			
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
 				<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 				<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
@@ -50,7 +83,7 @@
 				<h:form id="formTipoMembro">
 					<p:panelGrid id="panelMembro" columns="3">
 						<p:outputLabel value="Nome: " />
-						<p:inputText id="tipoMembroNome" maxlength="20" value="#{tipoMembroBean.tipoMembro.nome}" required="true" requiredMessage="É necessário informar o Tipo do cliente" />
+						<p:inputText id="tipoMembroNome"  value="#{tipoMembroBean.tipoMembro.nome}"/>
 						<p:message for="tipoMembroNome" />
 						<p:outputLabel value="Descrição: " />
 						<p:inputText id="tipoMembroDescricao" maxlength="100" value="#{tipoMembroBean.tipoMembro.descricao}" />
