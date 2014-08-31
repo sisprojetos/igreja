@@ -1,16 +1,12 @@
 package br.com.sis.igreja.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import javax.faces.model.SelectItem;
 
 import br.com.sis.igreja.model.dao.TipoMembroDAO;
 import br.com.sis.igreja.model.entity.Tipomembro;
@@ -23,6 +19,10 @@ public class TipoMembroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Tipomembro tipoMembro = new Tipomembro();
 	private DataModel<Tipomembro> tipoMembros;
+	
+	public int getTipoMembroLength() { 
+		return this.tipoMembros.getRowCount(); 
+	}
 
 	public Tipomembro getTipoMembro() {
 		return tipoMembro;

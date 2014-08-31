@@ -14,8 +14,8 @@
 
 			<p:messages closable="true" autoUpdate="true" globalOnly="true" />
 		
-			<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="5" paginator="true" sortMode="multiple" lazy="true">
-				<f:facet name="header">Cadastro de Tipo Membros</f:facet>
+			<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.tipomembros}" var="m" border="1" rows="10" paginator="true" rowsPerPageTemplate="5,10,15" sortMode="multiple" lazy="true">
+				<f:facet name="header">Tipos de Membro</f:facet>
 				<p:column headerText="#{language.nome}" sortBy="#{m.nome}">
 					<h:outputText value="#{m.nome}" />
 				</p:column>
@@ -32,6 +32,9 @@
 						<p:commandLink value="Excluir" actionListener="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
 					</h:form>
 				</p:column>
+				<f:facet name="footer">
+			        Há um total de #{tipoMembroBean.tipoMembroLength} registros.
+			    </f:facet>
 			</p:dataTable>
 			
 			<h:form>

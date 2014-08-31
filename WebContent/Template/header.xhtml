@@ -5,6 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 <body>
 	<ui:composition>
@@ -70,6 +71,16 @@
 			</f:view>
 			</p:menuitem>
 		</p:megaMenu>
+		
+		<br></br>
+		
+		<div style="text-align: center">
+			<p:themeSwitcher style="width:200px; text-align: left" id="defaultSwitcher">
+				<f:selectItem itemLabel=" ------ Temas ------ " itemValue="" />
+				<f:selectItems value="#{themeSwitcherBean.themes}" />
+			</p:themeSwitcher>
+		</div>
+		
 	</ui:composition>
 </body>
 </html>

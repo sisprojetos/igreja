@@ -11,7 +11,7 @@ public class ThemeSwitcherBean {
 
 	 private Map<String, String> themes;  
      
-	    private String theme = "aristo";  
+	    private String theme = "dot-luv";  
 	      
 	    public Map<String, String> getThemes() {  
 	        return themes;  
