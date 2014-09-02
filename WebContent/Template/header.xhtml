@@ -14,28 +14,28 @@
 			style="margin-top:20px">
 			<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-close" />
 
-			<p:submenu label="Membro" icon="ui-icon-check">
+			<p:submenu label="#{message.MEMBRO}" icon="ui-icon-check">
 				<p:column>
-					<p:submenu label="Administração dos Membros">
-						<p:menuitem value="CRUD Tipo" url="TipoMembro.xhtml" />
-						<p:menuitem value="CRUD Membro" url="#" />
+					<p:submenu label="#{message.ADMINISTRACAO} #{message.MEMBRO}">
+						<p:menuitem value="#{message.TIPO_MEMBRO}" url="TipoMembro.xhtml" />
+						<p:menuitem value="#{message.MEMBRO}" url="#" />
 					</p:submenu>
 				</p:column>
 			</p:submenu>
 
-			<p:submenu label="Filial" icon="ui-icon-check">
+			<p:submenu label="#{message.FILIAL}" icon="ui-icon-check">
 				<p:column>
 					<p:submenu label="Administração das Filiais">
-						<p:menuitem value="CRUD Tipo" url="#" />
-						<p:menuitem value="CRUD Filial" url="#" />
+						<p:menuitem value="#{message.TIPO}" url="#" />
+						<p:menuitem value="#{message.FILIAL}" url="#" />
 					</p:submenu>
 				</p:column>
 			</p:submenu>
 			
-			<p:submenu label="Acesso" icon="ui-icon-check">
+			<p:submenu label="#{message.ACESSO}" icon="ui-icon-check">
 				<p:column>
 					<p:submenu label="Administração dos Acessos">
-						<p:menuitem value="CRUD Acesso" url="#" />
+						<p:menuitem value="#{message.ACESSO}" url="#" />
 					</p:submenu>
 				</p:column>
 			</p:submenu>
@@ -45,18 +45,17 @@
 		<br></br>
 		
 		<div style="text-align: right;">
-			<p:menuitem value="Idioma" url="http://www.primefaces.org" icon="ui-icon-close"> 
+			<p:menuitem value="#{message.IDIOMA}" url="http://www.primefaces.org" icon="ui-icon-close"> 
 				<f:view locale="#{usuarioMB.locale}" contentType="text/html; charset=UTF-8" encoding="UTF-8">  
 					<h:form>
-						<h:outputText value="#{language.internacionalizacaoTexto}" />
+						<h:outputText value="#{message.IDIOMA}" />
 						<h:selectOneMenu value="#{usuarioMB.linguaEscolhida}">
 							<f:selectItem itemValue="pt"
-								itemLabel="#{language.internacionalizacaoPT}" />
+								itemLabel="#{message.PT}" />
 							<f:selectItem itemValue="en"
-								itemLabel="#{language.internacionalizacaoEN}" />
+								itemLabel="#{message.EN}" />
 						</h:selectOneMenu>
-						<h:commandButton actionListener="#{usuarioMB.alterarIdioma}"
-							value="#{language.internacionalizacaoTrocar}" />
+						<h:commandButton actionListener="#{usuarioMB.alterarIdioma}" value="#{message.TROCAR}" />
 					</h:form>
 				</f:view>
 			</p:menuitem>

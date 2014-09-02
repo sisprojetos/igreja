@@ -6,7 +6,7 @@
 	<application>
 		<resource-bundle>
 			<base-name>language</base-name>
-			<var>language</var>
+			<var>message</var>
 		</resource-bundle>
 		<locale-config>
 			<default-locale>pt_BR</default-locale>

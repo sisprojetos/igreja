@@ -28,6 +28,9 @@ public class UsuarioMB implements Serializable {
 		if (linguaEscolhida.equals("en")) {
 			locale = Locale.US;
 			instance.getViewRoot().setLocale(locale);
+		} else if(linguaEscolhida.equals("pt")) {
+			locale = new Locale("pt", "BR");
+			instance.getViewRoot().setLocale(locale);
 		} else {
 			locale = new Locale(linguaEscolhida);
 			instance.getViewRoot().setLocale(locale);

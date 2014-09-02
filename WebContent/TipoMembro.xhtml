@@ -10,48 +10,47 @@
 	<ui:composition template="/Template/layout.xhtml">
 		<ui:define name="content">
 
-			<br></br>
+			<br />
 
 			<p:messages closable="true" autoUpdate="true" globalOnly="true" />
+					<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.findAll()}" var="m" border="1" rows="10" paginator="true" rowsPerPageTemplate="5,10,15" sortMode="multiple" widgetVar="membroTable" emptyMessage="Nenhum tipo encontrado">
+						<f:facet name="header">Tipos de Membro
+							<p:outputPanel>
+				                <h:outputText value="Filtrar Tipos: " />
+				                <p:inputText id="filtroGlobal" onkeyup="PF('membroTable').filter()" style="width:150px" placeholder="Buscar"/>
+				            </p:outputPanel>
+						</f:facet>
+						<p:column headerText="#{message.NOME}" sortBy="#{m.nome}" filterBy="#{m.nome}" footerText="#{message.NOME}" filterMatchMode="contains">
+							<h:outputText value="#{m.nome}" />
+						</p:column>
+						<p:column headerText="#{message.DESCRICAO}" sortBy="#{m.descricao}" filterBy="#{m.descricao}" footerText="#{message.DESCRICAO}" filterMatchMode="contains">
+							<h:outputText value="#{m.descricao}" />
+						</p:column>
+						<p:column exportable="false">
+							<h:form>
+								<p:commandLink value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show(); "/>
+							</h:form>
+						</p:column>
+						<p:column exportable="false">
+							<h:form>
+								<p:commandLink value="Excluir" actionListener="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
+							</h:form>
+						</p:column>
+						<f:facet name="footer"> 
+							<h:outputFormat value ="#{message.TIPO_MEMBRO_TOTAL_REGISTRO}">
+								<f:param value="#{tipoMembroBean.tipoMembroLength}" />
+							</h:outputFormat>
+						</f:facet>
+					</p:dataTable>
 		
-			<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.findAll()}" var="m" border="1" rows="10" paginator="true" rowsPerPageTemplate="5,10,15" sortMode="multiple" widgetVar="membroTable" emptyMessage="Nenhum tipo encontrado">
-				<f:facet name="header">Tipos de Membro
-					<p:outputPanel>
-		                <h:outputText value="Filtrar Tipos: " />
-		                <p:inputText id="filtroGlobal" onkeyup="PF('membroTable').filter()" style="width:150px" placeholder="Buscar"/>
-		            </p:outputPanel>
-				</f:facet>
-				<p:column headerText="#{language.nome}" sortBy="#{m.nome}" filterBy="#{m.nome}" footerText="#{language.nome}" filterMatchMode="contains">
-					<h:outputText value="#{m.nome}" />
-				</p:column>
-				<p:column headerText="#{language.descricao}" sortBy="#{m.descricao}" filterBy="#{m.descricao}" footerText="#{language.descricao}" filterMatchMode="contains">
-					<h:outputText value="#{m.descricao}" />
-				</p:column>
-				<p:column exportable="false">
-					<h:form>
-						<p:commandLink value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show(); "/>
-					</h:form>
-				</p:column>
-				<p:column exportable="false">
-					<h:form>
-						<p:commandLink value="Excluir" actionListener="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
-					</h:form>
-				</p:column>
-				<f:facet name="footer">
-			        Há um total de #{tipoMembroBean.tipoMembroLength} registros.
-			    </f:facet>
-			</p:dataTable>
-			
 			<h:form>
-				<p:commandButton value="#{language.incluirTipoMembro}" actionListener="#{tipoMembroBean.incluirTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
+				<p:commandButton value="#{message.INCLUIR_TIPO_MEMBRO}" actionListener="#{tipoMembroBean.incluirTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
 			</h:form>
-			
-			<br></br>
-			<hr></hr>
-			<br></br>
-			
-			<h3>Exportar relatório</h3>
-			<br></br>
+			<br />
+			<hr />
+			<br />
+			<h3>#{message.EXPORTAR_RELATORIO}</h3>
+			<br />
 			<h:form>
 			    <h:commandLink>
 			        <p:graphicImage library="images" name="excel.png" />
@@ -94,7 +93,6 @@
 					</p:panelGrid>
 				</h:form>
 			</p:dialog>
-	
 		</ui:define>
 	</ui:composition>
 </h:body>

@@ -46,7 +46,7 @@ public class TipoMembroBean implements Serializable {
 	}
 	
 	public DataModel<Tipomembro> findAll() {
-			return tipoMembros;
+		return tipoMembros;
 	}
 
 	public void incluirTipoMembro() {
