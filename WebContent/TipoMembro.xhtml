@@ -13,6 +13,7 @@
 			<br />
 
 			<p:messages closable="true" autoUpdate="true" globalOnly="true" />
+				<h:form id="formDataTableTipoMembro">
 					<p:dataTable id="dataTableTipoMembro" value="#{tipoMembroBean.findAll()}" var="m" border="1" rows="10" paginator="true" rowsPerPageTemplate="5,10,15" sortMode="multiple" widgetVar="membroTable" emptyMessage="Nenhum tipo encontrado">
 						<f:facet name="header">Tipos de Membro
 							<p:outputPanel>
@@ -33,7 +34,7 @@
 						</p:column>
 						<p:column exportable="false">
 							<h:form>
-								<p:commandLink value="Excluir" actionListener="#{tipoMembroBean.excluirTipoMembro}" update=":dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
+								<p:commandLink value="Excluir" actionListener="#{tipoMembroBean.excluirTipoMembro}" update=":formDataTableTipoMembro:dataTableTipoMembro"> <p:confirm header="Confirmação" message="Confirma Exclusão?" icon="ui-icon-alert" />	</p:commandLink>
 							</h:form>
 						</p:column>
 						<f:facet name="footer"> 
@@ -42,7 +43,7 @@
 							</h:outputFormat>
 						</f:facet>
 					</p:dataTable>
-		
+				</h:form>
 			<h:form>
 				<p:commandButton value="#{message.INCLUIR_TIPO_MEMBRO}" actionListener="#{tipoMembroBean.incluirTipoMembro}" update=":formTipoMembro:panelMembro" oncomplete="PF('dialogTipoMembro').show();" />
 			</h:form>
@@ -54,22 +55,22 @@
 			<h:form>
 			    <h:commandLink>
 			        <p:graphicImage library="images" name="excel.png" />
-			        <p:dataExporter type="xls" target=":dataTableTipoMembro" fileName="TiposDeMembro" />
+			        <p:dataExporter type="xls" target=":formDataTableTipoMembro:dataTableTipoMembro" fileName="TiposDeMembro" />
 			    </h:commandLink>
 			 
 			    <h:commandLink>
 			        <p:graphicImage library="images" name="pdf.png" />
-			        <p:dataExporter type="pdf" target=":dataTableTipoMembro" fileName="TiposDeMembro" />
+			        <p:dataExporter type="pdf" target=":formDataTableTipoMembro:dataTableTipoMembro" fileName="TiposDeMembro" />
 			    </h:commandLink>
 			 
 			    <h:commandLink>
 			        <p:graphicImage library="images" name="csv.png" />
-			        <p:dataExporter type="csv" target=":dataTableTipoMembro" fileName="TiposDeMembro" />
+			        <p:dataExporter type="csv" target=":formDataTableTipoMembro:dataTableTipoMembro" fileName="TiposDeMembro" />
 			    </h:commandLink>
 			 
 			    <h:commandLink>
 			        <p:graphicImage library="images" name="xml.png" />
-			        <p:dataExporter type="xml" target=":dataTableTipoMembro" fileName="TiposDeMembro" />
+			        <p:dataExporter type="xml" target=":formDataTableTipoMembro:dataTableTipoMembro" fileName="TiposDeMembro" />
 			    </h:commandLink>
 		    </h:form>
 			
@@ -87,8 +88,8 @@
 						<p:outputLabel value="Descrição: " />
 						<p:inputText id="tipoMembroDescricao" maxlength="100" value="#{tipoMembroBean.tipoMembro.descricao}" />
 						<h:outputLabel value="" />
-						<p:commandButton value="Incluir" actionListener="#{tipoMembroBean.incluirMembro}" rendered="#{tipoMembroBean.tipoMembro.nome == null}"	update=":dataTableTipoMembro,panelMembro" oncomplete="if (!args.validationFailed) {PF('dialogTipoMembro').hide();}" />
-						<p:commandButton value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembroProcessa}" rendered="#{tipoMembroBean.tipoMembro.nome != null}" update=":dataTableTipoMembro,panelMembro" oncomplete="if (!args.validationFailed) {PF('dialogTipoMembro').hide();}" />
+						<p:commandButton value="Incluir" actionListener="#{tipoMembroBean.incluirMembro}" rendered="#{tipoMembroBean.tipoMembro.nome == null}"	update=":formDataTableTipoMembro:dataTableTipoMembro,panelMembro" oncomplete="if (!args.validationFailed) {PF('dialogTipoMembro').hide();}" />
+						<p:commandButton value="Alterar" actionListener="#{tipoMembroBean.alterarTipoMembroProcessa}" rendered="#{tipoMembroBean.tipoMembro.nome != null}" update=":formDataTableTipoMembro:dataTableTipoMembro,panelMembro" oncomplete="if (!args.validationFailed) {PF('dialogTipoMembro').hide();}" />
 						<p:commandButton value="Cancelar" oncomplete="PF('dialogTipoMembro').hide();" />
 					</p:panelGrid>
 				</h:form>
